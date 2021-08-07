@@ -21,7 +21,7 @@ const userSchema = new Schema(
       max: 64,
     },
     picture: {
-      type: string,
+      type: String,
       default: '/avatar.png',
     },
     role: {
