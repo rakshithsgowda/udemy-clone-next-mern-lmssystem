@@ -3,11 +3,8 @@ import express from 'express'
 const router = express.Router()
 
 // importing Controllers
-import {register } from '../controllers/auth.js'
+import { register } from '../controllers/auth.js'
 
-
-router.get('/register',register)
-
-
+router.post('/register', register)
 
 module.exports = router

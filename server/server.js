@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 // route
 readdirSync('./routes').map((r) => {
-  return app.use('/api/v1', require(`./routes/${r}`))
+  return app.use('/api', require(`./routes/${r}`))
 })
 
 // port
