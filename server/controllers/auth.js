@@ -1,4 +1,4 @@
-
-export const register =(req, res) => {
-  res.send('register user response from the auth controller')
+export const register = (req, res) => {
+  console.log(req.body)
+  res.json('register user response from the auth controller')
 }
