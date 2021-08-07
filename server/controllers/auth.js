@@ -27,8 +27,8 @@ export const register = async (req, res) => {
     await user.save()
     // console.log('saved user', user)
     return await res.json({ ok: true })
-  } catch (error) {
-    console.log(error)
+  } catch (err) {
+    console.log(err)
     return await res.status(400).send('ERROR..!! Try again..')
   }
 }
