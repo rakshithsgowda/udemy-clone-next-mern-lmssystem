@@ -14,7 +14,7 @@ const Register = () => {
       email,
       password,
     })
-    console.log(`REGISTER RESPONSE ${data}`)
+    console.log(`REGISTER RESPONSE `, data)
   }
   return (
     <>
