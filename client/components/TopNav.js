@@ -7,16 +7,18 @@ import {
   AppstoreOutlined,
   UserAddOutlined,
   LogoutOutlined,
+  CoffeeOutlined,
 } from '@ant-design/icons'
 import { Context } from '../context'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
-const { Item } = Menu
+const { Item, SubMenu } = Menu
 
 const TopNav = () => {
   const [current, setCurrent] = useState('')
   const { state, dispatch } = useContext(Context)
+  const { user } = state
 
   const router = useRouter()
 
@@ -43,27 +45,38 @@ const TopNav = () => {
           <a>App</a>
         </Link>
       </Item>
-      <Item
-        key='/login'
-        onClick={(e) => setCurrent(e.key)}
-        icon={<LoginOutlined />}
-      >
-        <Link href='/login'>
-          <a>Login</a>
-        </Link>
-      </Item>
-      <Item
-        key='/register'
-        onClick={(e) => setCurrent(e.key)}
-        icon={<UserAddOutlined />}
-      >
-        <Link href='/register'>
-          <a>Register</a>
-        </Link>
-      </Item>
-      <Item onClick={logout} icon={<LogoutOutlined />} className='float-right'>
-        Logout
-      </Item>
+
+      {user === null && (
+        <>
+          <Item
+            key='/login'
+            onClick={(e) => setCurrent(e.key)}
+            icon={<LoginOutlined />}
+          >
+            <Link href='/login'>
+              <a>Login</a>
+            </Link>
+          </Item>
+          <Item
+            key='/register'
+            onClick={(e) => setCurrent(e.key)}
+            icon={<UserAddOutlined />}
+          >
+            <Link href='/register'>
+              <a>Register</a>
+            </Link>
+          </Item>
+        </>
+      )}
+      {user !== null && (
+        <SubMenu
+          icon={<CoffeeOutlined />}
+          title={user && user.name}
+          className='ms-auto'
+        >
+          <Item onClick={logout}>Logout</Item>
+        </SubMenu>
+      )}
     </Menu>
   )
 }
